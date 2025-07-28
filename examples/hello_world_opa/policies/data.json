@@ -1,0 +1,103 @@
+{
+  "trusted_agents": [
+    "hello_agent",
+    "admin_agent", 
+    "trusted_agent",
+    "test_client"
+  ],
+  "public_agents": [
+    "hello_agent"
+  ],
+  "authorized_agents": [
+    "hello_agent",
+    "admin_agent",
+    "trusted_agent", 
+    "test_client"
+  ],
+  "agent_organizations": {
+    "hello_agent": "demo_org",
+    "admin_agent": "demo_org",
+    "trusted_agent": "demo_org",
+    "test_client": "demo_org"
+  },
+  "task_owners": {},
+  "public_tasks": [],
+  "public_capabilities": [
+    "greeting",
+    "basic_chat",
+    "calculator"
+  ],
+  "capability_permissions": {
+    "secure_messaging": "handle_sensitive_data",
+    "admin_functions": "admin",
+    "database_access": "db_read"
+  },
+  "capability_clearance": {
+    "sensitive_data": 3,
+    "admin_data": 5,
+    "classified_info": 5
+  },
+  "allowed_operations": {
+    "hello_agent": [
+      "message/send",
+      "message/stream", 
+      "tasks/get"
+    ],
+    "admin_agent": [
+      "message/send",
+      "message/stream",
+      "tasks/get",
+      "tasks/cancel",
+      "tasks/pushNotificationConfig/set",
+      "tasks/pushNotificationConfig/get",
+      "tasks/pushNotificationConfig/list",
+      "tasks/pushNotificationConfig/delete"
+    ],
+    "trusted_agent": [
+      "message/send",
+      "message/stream",
+      "tasks/get"
+    ],
+    "test_client": [
+      "message/send",
+      "tasks/get"
+    ]
+  },
+  "system": {
+    "maintenance_mode": false,
+    "max_message_size": 10000,
+    "security_level": "standard"
+  },
+  "agent_permissions": {
+    "hello_agent": [
+      "send_messages",
+      "view_tasks"
+    ],
+    "admin_agent": [
+      "admin",
+      "manage_all_tasks",
+      "handle_sensitive_data",
+      "send_large_messages"
+    ],
+    "trusted_agent": [
+      "send_messages",
+      "view_tasks", 
+      "handle_sensitive_data"
+    ],
+    "test_client": [
+      "send_messages"
+    ]
+  },
+  "agent_roles": {
+    "hello_agent": "agent",
+    "admin_agent": "admin",
+    "trusted_agent": "trusted",
+    "test_client": "client"
+  },
+  "agent_clearance_levels": {
+    "hello_agent": 1,
+    "admin_agent": 5,
+    "trusted_agent": 3,
+    "test_client": 1
+  }
+}

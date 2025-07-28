@@ -1,0 +1,38 @@
+# Configuration for Hello World Agent with OPA Integration
+
+# Server configuration
+server:
+  host: "0.0.0.0"
+  port: 9999
+
+# OPA server configuration
+opa:
+  url: "http://localhost:8181"
+  timeout: 10.0
+
+# Security configuration
+security:
+  default_deny: true
+  audit_decisions: true
+  fail_open: false
+  sensitive_patterns:
+    - "SECRET"
+    - "CONFIDENTIAL" 
+    - "PASSWORD"
+    - "TOKEN"
+    - "API_KEY"
+    - "PRIVATE_KEY"
+    - "SSN"
+    - "CREDIT_CARD"
+
+# Environment data for policies
+environment:
+  deployment: "demo"
+  organization: "demo_org"
+  region: "local"
+  security_level: "standard"
+
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

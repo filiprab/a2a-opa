@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # OPA (Open Policy Agent) server
+  opa:
+    image: openpolicyagent/opa:latest-envoy
+    container_name: opa-server
+    ports:
+      - "8181:8181"
+    command:
+      - "run"
+      - "--server"
+      - "--addr=0.0.0.0:8181"
+      - "--log-level=info"
+      - "--log-format=json"
+      - "/policies"
+    volumes:
+      - ./policies:/policies:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8181/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - a2a-opa-network
+
+  # A2A Hello World Agent with OPA Integration
+  hello-world-agent:
+    build: .
+    container_name: hello-world-opa-agent
+    ports:
+      - "9999:9999"
+    environment:
+      - OPA_URL=http://opa:8181
+      - LOG_LEVEL=INFO
+    depends_on:
+      opa:
+        condition: service_healthy
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+    networks:
+      - a2a-opa-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9999/.well-known/agent.json"]
+      interval: 15s
+      timeout: 10s
+      retries: 3
+
+  # Policy development and testing container
+  policy-dev:
+    image: openpolicyagent/opa:latest
+    container_name: opa-policy-dev
+    volumes:
+      - ./policies:/policies
+      - ./tests:/tests
+    working_dir: /policies
+    command: ["sleep", "infinity"]
+    networks:
+      - a2a-opa-network
+    profiles:
+      - dev
+
+networks:
+  a2a-opa-network:
+    driver: bridge
+
+volumes:
+  opa-data:
+    driver: local
