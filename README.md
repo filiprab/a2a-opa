@@ -1,11 +1,13 @@
 # A2A-OPA Integration
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 
 OPA (Open Policy Agent) integration for A2A (Agent-to-Agent) protocol, enabling policy-based authorization and access control for agent communications.
 
 ## Overview
+
+!!! Be aware that this is currently not production ready. Current state of this project is a rough draft
 
 This library provides a middleware layer that integrates OPA policy enforcement with the A2A Python SDK, allowing developers to:
 
