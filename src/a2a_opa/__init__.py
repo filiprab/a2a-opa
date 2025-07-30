@@ -5,20 +5,18 @@ This library provides OPA (Open Policy Agent) integration for A2A (Agent-to-Agen
 enabling policy-based authorization and access control for agent communications.
 """
 
-from .client import OPAClient, PolicyDecision
-from .context import A2AContext, ContextExtractor
+from .client import AgentCardDiscoveryContext, OPAClientInterceptor, evaluate_agent_card_policy
 from .exceptions import OPAError, PolicyEvaluationError, PolicyViolationError
-from .handler import OPARequestHandler
-from .policies import PolicyManager
 
 __version__ = "0.1.0"
 __all__ = [
-    "OPAClient",
-    "OPARequestHandler",
-    "ContextExtractor",
-    "A2AContext",
-    "PolicyManager",
-    "PolicyDecision",
+    # Client-side components
+    "OPAClientInterceptor",
+    "AgentCardDiscoveryContext",
+    "evaluate_agent_card_policy",
+    # Server-side components
+    # TODO
+    # Exceptions
     "OPAError",
     "PolicyViolationError",
     "PolicyEvaluationError",

@@ -44,19 +44,3 @@ class PolicyViolationError(OPAError):
         self.policy_path = policy_path
         self.decision = decision
         self.context = context or {}
-
-
-class PolicyLoadError(OPAError):
-    """Raised when policy loading fails."""
-
-    def __init__(self, message: str, policy_path: str | None = None):
-        super().__init__(message)
-        self.policy_path = policy_path
-
-
-class OPAConnectionError(OPAError):
-    """Raised when connection to OPA server fails."""
-
-    def __init__(self, message: str, url: str | None = None):
-        super().__init__(message)
-        self.url = url

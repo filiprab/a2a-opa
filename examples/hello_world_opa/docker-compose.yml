@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # OPA (Open Policy Agent) server
   opa:
-    image: openpolicyagent/opa:latest-envoy
+    image: openpolicyagent/opa:latest
     container_name: opa-server
     ports:
       - "8181:8181"
